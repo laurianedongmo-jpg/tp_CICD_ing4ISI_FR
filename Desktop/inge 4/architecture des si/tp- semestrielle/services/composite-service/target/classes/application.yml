@@ -1,0 +1,50 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: composite-service
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=500,expireAfterWrite=300s
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+      client-service:
+        url: http://client-service
+      compte-service:
+        url: http://compte-service
+      transaction-service:
+        url: http://transaction-service
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      dashboard:
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10000
+        permittedNumberOfCallsInHalfOpenState: 3
+  timelimiter:
+    instances:
+      dashboard:
+        timeoutDuration: 10s
+
+logging:
+  level:
+    com.willbank: DEBUG
+    feign: DEBUG

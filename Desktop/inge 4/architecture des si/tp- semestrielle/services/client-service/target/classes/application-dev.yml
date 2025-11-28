@@ -1,0 +1,15 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration
+
+# Désactiver RabbitMQ si non disponible
+logging:
+  level:
+    com.willbank: DEBUG
+    org.springframework.amqp: WARN

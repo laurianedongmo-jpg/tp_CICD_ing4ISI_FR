@@ -1,0 +1,103 @@
+================================================================================
+    INSTALLATION RAPIDE - JAVA & MAVEN
+================================================================================
+
+METHODE RAPIDE (5 minutes)
+================================================================================
+
+1. Ouvrir PowerShell en MODE ADMINISTRATEUR
+   (Clic droit sur PowerShell > Executer en tant qu'administrateur)
+
+2. Installer Chocolatey (gestionnaire de paquets Windows)
+   Copier-coller cette commande:
+
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+3. Installer Java JDK 17
+   
+choco install openjdk17 -y
+
+4. Installer Maven
+
+choco install maven -y
+
+5. FERMER et ROUVRIR PowerShell (important !)
+
+6. Verifier l'installation
+
+java -version
+mvn -version
+
+7. Si tout est OK, demarrer les services
+
+start-services.bat
+
+
+METHODE MANUELLE (10 minutes)
+================================================================================
+
+1. JAVA JDK 17
+   - Aller sur: https://adoptium.net/
+   - Telecharger: Temurin 17 (LTS) pour Windows x64
+   - Installer en cochant "Set JAVA_HOME" et "Add to PATH"
+   - Redemarrer le terminal
+
+2. MAVEN
+   - Aller sur: https://maven.apache.org/download.cgi
+   - Telecharger: Binary zip archive
+   - Extraire dans: C:\Program Files\Apache\maven
+   - Ajouter au PATH: C:\Program Files\Apache\maven\bin
+   - Redemarrer le terminal
+
+3. VERIFICATION
+   - Ouvrir un nouveau terminal
+   - Taper: java -version
+   - Taper: mvn -version
+
+
+VERIFICATION AUTOMATIQUE
+================================================================================
+
+Double-cliquer sur: verifier-installation.bat
+
+Ce script verifie si Java et Maven sont correctement installes.
+
+
+APRES INSTALLATION
+================================================================================
+
+1. Verifier l'installation:
+   verifier-installation.bat
+
+2. Demarrer les services:
+   start-services.bat
+
+3. Tester:
+   test-integration.bat
+
+
+AIDE
+================================================================================
+
+Probleme avec l'installation ?
+  → Voir: GUIDE-INSTALLATION-JDK.md (guide detaille)
+
+Probleme avec le demarrage ?
+  → Voir: INSTALLATION.md
+
+Questions generales ?
+  → Voir: LIRE-MOI-DABORD.txt
+
+
+LIENS UTILES
+================================================================================
+
+Java JDK 17:     https://adoptium.net/
+Maven:           https://maven.apache.org/download.cgi
+Chocolatey:      https://chocolatey.org/
+Documentation:   docs/
+
+
+================================================================================
+    Bon courage !
+================================================================================

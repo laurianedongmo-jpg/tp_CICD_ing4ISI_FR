@@ -1,0 +1,127 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        # Client Service
+        - id: client-service
+          uri: lb://client-service
+          predicates:
+            - Path=/api/clients/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: clientServiceCircuitBreaker
+                fallbackUri: forward:/fallback/client
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter:
+                  replenishRate: 10
+                  burstCapacity: 20
+        
+        # Compte Service
+        - id: compte-service
+          uri: lb://compte-service
+          predicates:
+            - Path=/api/comptes/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: compteServiceCircuitBreaker
+                fallbackUri: forward:/fallback/compte
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter:
+                  replenishRate: 20
+                  burstCapacity: 40
+        
+        # Transaction Service
+        - id: transaction-service
+          uri: lb://transaction-service
+          predicates:
+            - Path=/api/transactions/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: transactionServiceCircuitBreaker
+                fallbackUri: forward:/fallback/transaction
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter:
+                  replenishRate: 50
+                  burstCapacity: 100
+        
+        # Notification Service
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/api/notifications/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: notificationServiceCircuitBreaker
+        
+        # Composite Service
+        - id: composite-service
+          uri: lb://composite-service
+          predicates:
+            - Path=/api/composite/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: compositeServiceCircuitBreaker
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: 
+              - "http://localhost:3000"
+              - "http://localhost:4200"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - PATCH
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
+            maxAge: 3600
+
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 2000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true
+
+jwt:
+  secret: ${JWT_SECRET:willbank-secret-key-for-jwt-token-generation-2025}
+  expiration: 86400000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,gateway
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    com.willbank: DEBUG

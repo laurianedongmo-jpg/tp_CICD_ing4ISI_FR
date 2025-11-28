@@ -1,0 +1,186 @@
+================================================================================
+    WILLBANK MICROSERVICES - PROJET D'ARCHITECTURE DES SI
+================================================================================
+
+Bienvenue dans le projet WillBank Microservices !
+
+Ce projet contient une architecture microservices complete pour une banque,
+avec la conception detaillee et l'implementation de plusieurs services.
+
+
+📋 FICHIERS IMPORTANTS A LIRE
+================================================================================
+
+1. DEMARRAGE-RAPIDE.md
+   → Pour demarrer en 5 minutes (si Java et Maven sont installes)
+
+2. INSTALLATION.md
+   → Guide complet d'installation de Java, Maven, etc.
+
+3. STATUS.md
+   → Etat d'avancement du projet (ce qui est fait, ce qui reste)
+
+4. TESTING-GUIDE.md
+   → Comment tester les services avec cURL ou Postman
+
+
+🚀 DEMARRAGE RAPIDE
+================================================================================
+
+Si Java 17+ et Maven sont deja installes :
+
+1. Double-cliquer sur : start-services.bat
+2. Attendre 30 secondes
+3. Ouvrir : http://localhost:8761 (Eureka)
+4. Tester : Double-cliquer sur test-client-service.bat
+
+
+📁 STRUCTURE DU PROJET
+================================================================================
+
+willbank-microservices/
+├── docs/                          → Documentation complete
+│   ├── architecture-globale.md    → Architecture avec diagrammes
+│   ├── guide-implementation.md    → Guide d'implementation
+│   └── microservices/             → Conception de chaque service
+│
+├── services/                      → Code source des microservices
+│   ├── discovery-service/         → ✅ Eureka (PRET)
+│   └── client-service/            → ✅ Service Client (PRET)
+│
+├── infrastructure/                → Docker Compose (optionnel)
+│   └── docker-compose.yml
+│
+├── start-services.bat             → Script de demarrage automatique
+├── test-client-service.bat        → Script de test
+│
+└── Documentation :
+    ├── DEMARRAGE-RAPIDE.md        → Demarrage en 5 minutes
+    ├── INSTALLATION.md            → Installation complete
+    ├── STATUS.md                  → Etat du projet
+    └── TESTING-GUIDE.md           → Guide de test
+
+
+✅ CE QUI EST FAIT
+================================================================================
+
+Part 1 : Dossier de Conception (100%)
+  ✅ Architecture globale avec diagrammes
+  ✅ Conception de 6 microservices
+  ✅ Modeles de donnees (SQL)
+  ✅ APIs REST documentees
+  ✅ Evenements RabbitMQ
+  ✅ Configuration Docker
+
+Part 2 : Codage (35%)
+  ✅ Discovery Service (Eureka) - FONCTIONNEL
+  ✅ Client Service - FONCTIONNEL
+  ⏳ Compte Service - A implementer
+  ⏳ Transaction Service - A implementer
+  ⏳ Notification Service - A implementer
+  ⏳ Composite Service - A implementer
+  ⏳ API Gateway - A implementer
+
+
+🎯 OBJECTIFS PEDAGOGIQUES
+================================================================================
+
+✅ 1. Concevoir une architecture microservices
+✅ 2. Definir les frontieres des microservices
+✅ 3. Modeliser les donnees (base par service)
+✅ 4. Concevoir les APIs REST
+✅ 5. Configurer Eureka (Service Discovery)
+✅ 6. Configurer RabbitMQ (Message Broker)
+⚙️ 7. Implementer les microservices (2/7 faits)
+
+
+🔧 PREREQUIS
+================================================================================
+
+OBLIGATOIRE :
+  - Java JDK 17 ou superieur
+  - Maven 3.8 ou superieur
+
+OPTIONNEL (pour production) :
+  - Docker Desktop
+  - PostgreSQL
+  - RabbitMQ
+
+→ Voir INSTALLATION.md pour les instructions detaillees
+
+
+🌐 URLS DES SERVICES
+================================================================================
+
+Eureka Dashboard :     http://localhost:8761
+Client Service API :   http://localhost:8081/api/clients
+H2 Console :           http://localhost:8081/h2-console
+RabbitMQ (si Docker) : http://localhost:15672
+
+
+📞 AIDE
+================================================================================
+
+Probleme de demarrage ?
+  → Lire INSTALLATION.md
+
+Erreur "mvn not found" ?
+  → Maven n'est pas installe ou pas dans le PATH
+  → Voir INSTALLATION.md section Maven
+
+Erreur "java not found" ?
+  → Java n'est pas installe
+  → Telecharger depuis https://adoptium.net/
+
+Port deja utilise ?
+  → Changer le port dans application.yml
+
+Les services ne s'enregistrent pas dans Eureka ?
+  → Attendre 30 secondes
+  → Verifier que Eureka est demarre
+
+
+📚 DOCUMENTATION COMPLETE
+================================================================================
+
+Toute la documentation est dans le dossier docs/ :
+
+  - architecture-globale.md : Architecture complete
+  - guide-implementation.md : Guide d'implementation
+  - microservices/ : Conception detaillee de chaque service
+
+
+🎓 POUR LES ETUDIANTS
+================================================================================
+
+Ce projet repond aux exigences du TP :
+
+Part 1 : Dossier de Conception
+  ✅ Architecture microservices proposee
+  ✅ Architecture logique de chaque service
+  ✅ Modele de base de donnees pour chaque service
+  ✅ Liste des APIs de chaque service
+
+Part 2 : Codage
+  ✅ Discovery Service (Eureka) implemente
+  ✅ Client Service implemente
+  ⏳ Autres services a implementer (structure fournie)
+
+
+🚀 PROCHAINES ETAPES
+================================================================================
+
+1. Installer Java 17+ et Maven (si pas deja fait)
+2. Demarrer les services : start-services.bat
+3. Tester l'API : test-client-service.bat
+4. Implementer les autres services (voir docs/guide-implementation.md)
+
+
+================================================================================
+    Bon courage avec votre projet !
+================================================================================
+
+Pour toute question, consultez la documentation dans le dossier docs/
+
+Derniere mise a jour : 26 novembre 2025
+Version : 1.0.0

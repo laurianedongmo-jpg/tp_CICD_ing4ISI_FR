@@ -1,0 +1,97 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Databases
+  postgres-client:
+    image: postgres:15-alpine
+    container_name: willbank-postgres-client
+    environment:
+      POSTGRES_DB: willbank_clients
+      POSTGRES_USER: willbank
+      POSTGRES_PASSWORD: willbank123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-client-data:/var/lib/postgresql/data
+    networks:
+      - willbank-network
+
+  postgres-compte:
+    image: postgres:15-alpine
+    container_name: willbank-postgres-compte
+    environment:
+      POSTGRES_DB: willbank_comptes
+      POSTGRES_USER: willbank
+      POSTGRES_PASSWORD: willbank123
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-compte-data:/var/lib/postgresql/data
+    networks:
+      - willbank-network
+
+  postgres-transaction:
+    image: postgres:15-alpine
+    container_name: willbank-postgres-transaction
+    environment:
+      POSTGRES_DB: willbank_transactions
+      POSTGRES_USER: willbank
+      POSTGRES_PASSWORD: willbank123
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres-transaction-data:/var/lib/postgresql/data
+    networks:
+      - willbank-network
+
+  postgres-notification:
+    image: postgres:15-alpine
+    container_name: willbank-postgres-notification
+    environment:
+      POSTGRES_DB: willbank_notifications
+      POSTGRES_USER: willbank
+      POSTGRES_PASSWORD: willbank123
+    ports:
+      - "5435:5432"
+    volumes:
+      - postgres-notification-data:/var/lib/postgresql/data
+    networks:
+      - willbank-network
+
+  # RabbitMQ
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: willbank-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    networks:
+      - willbank-network
+
+  # Redis (for API Gateway rate limiting)
+  redis:
+    image: redis:7-alpine
+    container_name: willbank-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - willbank-network
+
+volumes:
+  postgres-client-data:
+  postgres-compte-data:
+  postgres-transaction-data:
+  postgres-notification-data:
+  rabbitmq-data:
+  redis-data:
+
+networks:
+  willbank-network:
+    driver: bridge
