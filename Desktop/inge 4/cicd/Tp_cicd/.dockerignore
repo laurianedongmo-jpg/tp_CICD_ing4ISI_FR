@@ -1,0 +1,38 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Maven
+.mvn
+mvnw
+mvnw.cmd
+target/classes
+target/test-classes
+target/maven-status
+target/maven-archiver
+
+# IDE
+.idea
+*.iml
+.vscode
+.settings
+.project
+.classpath
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.local
+
+# Documentation
+*.md
+HELP.md
+
+# Tests
+src/test
+
+# CI/CD
+.github

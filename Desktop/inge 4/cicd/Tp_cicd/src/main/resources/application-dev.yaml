@@ -1,0 +1,19 @@
+# Configuration pour l'environnement de développement
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/tp_cicd_db_dev}
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+logging:
+  level:
+    root: DEBUG
+    com.example.Tp_cicd: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
